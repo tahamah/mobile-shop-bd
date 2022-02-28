@@ -56,7 +56,7 @@ const displayData = phones => {
         const searchResultContainer = document.getElementById('search-result-container')
         clearTextContent('search-result-container')
         phones.forEach(phone => {
-            console.log(phone)
+            // console.log(phone)
             const div = document.createElement('div')
             div.className = 'col'
             div.innerHTML = `
@@ -69,7 +69,7 @@ const displayData = phones => {
                     <h3 class="card-title">${phone.phone_name}</h3>
                     <p class="card-text">${phone.brand}</p>
                  </div>
-                 <div onclick="lodeSingleDrink(${phone.idDrink})" class="card-footer bg-primary">
+                 <div onclick="lodeSinglePhone('${phone.slug}')" class="card-footer bg-primary">
                      <h5 style="cursor:pointer" class="text-white  text-center ">See Details</h5>
                     </div>
                 </div>
@@ -81,44 +81,62 @@ const displayData = phones => {
 
 }
 
-/*  
-                     
-                     
-                  */
 
-/*
-    // load Single phone 
-    const lodeSingleDrink = id => {
-        clearTextContent('single-phone')
-        spinner('block')
-        document.getElementById('single-phone').style.display = 'block'
-        const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`
-        fetch(url)
-            .then(res => res.json())
-            .then(data => displaySingleDrink(data.drinks[0]))
 
-    }
+// load Single phone 
+const lodeSinglePhone = phoneId => {
+    clearTextContent('single-phone')
+    spinner('block')
+    document.getElementById('single-phone').style.display = 'block'
 
-    // display Single Phone
-    const displaySingleDrink = drink => {
-        const singlePhoneContainer = document.getElementById('single-phone')
-        const div = document.createElement('div')
-        clearTextContent('single-phone')
-        div.innerHTML = `
-                    <div class="row g-0">
-                    <div class="col-md-5">
-                    <img src="${drink.strDrinkThumb}" class="img-fluid rounded-start my-auto p-3" alt="...">
+    const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displaySinglePhone(data.data))
+        // console.log(data.data)
+}
+
+
+// display Single Phone
+const displaySinglePhone = phone => {
+    console.log(phone);
+    const singlePhoneContainer = document.getElementById('single-phone')
+    const div = document.createElement('div')
+    clearTextContent('single-phone')
+    div.innerHTML = `
+                <div class="row g-0">
+                    <div class="col-md-4 my-auto">
+                        <img src="${phone.image}" class="img-fluid rounded-start my-auto p-3" alt="...">
                     </div>
-                    <div class="col-md-7 my-auto">
-                    <div class="card-body">
-                        <h5 class="card-title">${drink.strDrink}</h5>
-                        <p class="card-text">${drink.strInstructions.slice(0,300)}</p>
-                        <a  href=" ${drink.strVideo ? drink.strVideo:console.log('object')} "class=" btn btn-primary">See Video</a>
-                    </div>
+                    <div class="col-md-8 my-auto">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                 <span class='fw-bolder'> Name:</span>  ${phone.name}
+                            </h5>
+                            <h6 class="card-text">
+                                <span class='fw-bolder'> ReleaseDate:</span> ${phone.releaseDate ? phone.releaseDate:'Not Found'}
+                            </h6>
+                            <p class="">
+                                <span class='fw-bolder'> ChipSet: </span> ${phone.mainFeatures.chipSet}
+                            </p>
+                            <p class="">
+                                <span class='fw-bolder'> Display Size: </span> ${phone.mainFeatures.displaySize}
+                            </p>
+                            <p class="">
+                                <span class='fw-bolder'> Memory:</span> ${phone.mainFeatures.memory}
+                            </p>
+                            <p class="">
+                                <span class='fw-bolder'> Storage:</span> ${phone.mainFeatures.storage}
+                            </p>
+                            <p class="">
+                                <span class='fw-bolder'> Sensors:</span> ${phone.mainFeatures.sensors[0]}
+                            </p>
+                        </div>
                     </div>
                 </div>
             `
-        singlePhoneContainer.appendChild(div)
-        spinner('none')
-        console.log(drink);
-    } */
+    singlePhoneContainer.appendChild(div)
+    spinner('none')
+}
+
+/* <a  href=" ${phone.strVideo ? phone.strVideo:console.log('object')} "class=" btn btn-primary">See Video</a> */
