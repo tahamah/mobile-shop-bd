@@ -36,7 +36,7 @@ const lodeData = () => {
         const url = `https://openapi.programming-hero.com/api/phones?search=${inputValue}`
         fetch(url)
             .then(res => res.json())
-            .then(data => displayData(data.data))
+            .then(data => displayData(data.data.slice(0, 20)))
         clearInputValue('inputField')
     }
 }
@@ -66,11 +66,11 @@ const displayData = phones => {
                 </div>
                     
                 <div class="card-body p-3">
-                    <h5 class="card-title">${phone.phone_name}</h5>
+                    <h3 class="card-title">${phone.phone_name}</h3>
                     <p class="card-text">${phone.brand}</p>
                  </div>
                  <div onclick="lodeSingleDrink(${phone.idDrink})" class="card-footer bg-primary">
-                     <h6 style="cursor:pointer" class="text-white text-center ">See Details</h6>
+                     <h5 style="cursor:pointer" class="text-white  text-center ">See Details</h5>
                     </div>
                 </div>
             `
