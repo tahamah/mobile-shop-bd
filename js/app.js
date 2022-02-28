@@ -20,8 +20,11 @@ const clearInputValue = id => {
 
 //load data
 const lodeData = () => {
-    document.getElementById('main').style.display = 'block'
+    //clear previous content
+    document.getElementById('single-phone').style.display = "none"
     spinner('block')
+
+    //error check, spinner && data load 
     const inputValue = document.getElementById('inputField').value
     if (inputValue === '') {
         clearTextContent('search-result-container')
@@ -29,7 +32,6 @@ const lodeData = () => {
         clearInputValue('inputField')
         error('block')
         spinner('none')
-        document.getElementById('single-phone').style.display = 'none'
     } else {
         clearTextContent('single-phone')
         error('none')
@@ -43,20 +45,20 @@ const lodeData = () => {
 
 //display Data
 const displayData = phones => {
-    //error
-    if (phones === null) {
+    //error check , spinner && display data
+    if (phones.length === 0) {
         clearTextContent('search-result-container')
         clearTextContent('single-phone')
         error('block')
         spinner('none')
     } else {
-        //main
+        //clear previous
         error('none')
-        document.getElementById('header').style.marginTop = '0px'
-        const searchResultContainer = document.getElementById('search-result-container')
         clearTextContent('search-result-container')
+
+        //display data
+        const searchResultContainer = document.getElementById('search-result-container')
         phones.forEach(phone => {
-            // console.log(phone)
             const div = document.createElement('div')
             div.className = 'col'
             div.innerHTML = `
@@ -76,33 +78,39 @@ const displayData = phones => {
             `
             searchResultContainer.appendChild(div)
         })
+
+        //remove spinner
         spinner('none')
     }
-
 }
 
 
 
 // load Single phone 
 const lodeSinglePhone = phoneId => {
+    //clear previous && spinner
     clearTextContent('single-phone')
     spinner('block')
-    document.getElementById('single-phone').style.display = 'block'
 
+    //data load
+    document.getElementById('single-phone').style.display = 'block'
     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     fetch(url)
         .then(res => res.json())
         .then(data => displaySinglePhone(data.data))
-        // console.log(data.data)
+
 }
 
 
 // display Single Phone
 const displaySinglePhone = phone => {
-    console.log(phone);
+    //clear previous
+    clearTextContent('single-phone')
+
+    //display Single Phone
     const singlePhoneContainer = document.getElementById('single-phone')
     const div = document.createElement('div')
-    clearTextContent('single-phone')
+    console.log(phone);
     div.innerHTML = `
                 <div class="row g-0">
                     <div class="col-md-4 my-auto">
@@ -116,40 +124,41 @@ const displaySinglePhone = phone => {
                             <h6 class="card-text">
                                 <span class='fw-bolder'> ReleaseDate:</span> ${phone.releaseDate ? phone.releaseDate:'Not Found'}
                             </h6>
-                            <p class="">
+                            <p>
                                 <span class='fw-bolder'> ChipSet: </span> ${phone.mainFeatures.chipSet}
                             </p>
-                            <p class="">
+                            <p>
                                 <span class='fw-bolder'> Display Size: </span> ${phone.mainFeatures.displaySize}
                             </p>
-                            <p class="">
+                            <p>
                                 <span class='fw-bolder'> Memory:</span> ${phone.mainFeatures.memory}
                             </p>
-                            <p class="">
+                            <p>
                                 <span class='fw-bolder'> Storage:</span> ${phone.mainFeatures.storage}
                             </p>
-                            <p class="">
+                            <p>
                                 <span class='fw-bolder'> Sensors:</span> ${phone.mainFeatures.sensors}
                             </p>
-                            <div class="">
+                            <div>
                                 <span class='fw-bolder'> Others:</span> </br>
-                                <span class='fw-bolder'> Bluetooth:</span> ${phone.others.Bluetooth} 
-                                <span class='fw-bolder'> GPS:</span> ${phone.others.GPS} 
-                                <span class='fw-bolder'> NFC:</span> ${phone.others.NFC} 
-                                <span class='fw-bolder'> Radio:</span> ${phone.others.Radio} 
-                                <span class='fw-bolder'> USB:</span> ${phone.others.USB} 
-                                <span class='fw-bolder'> WLAN:</span> ${phone.others.WLAN} 
+                                <span class='fw-bolder'> Bluetooth:</span> ${phone.others.Bluetooth ? phone.others.Bluetooth:'Not Available'}
+                                 
+                                <span class='fw-bolder'> GPS:</span> ${phone.others.GPS ? phone.others.GPS:'Not Available'} 
+
+                                <span class='fw-bolder'> NFC:</span> ${phone.others.NFC ? phone.others.NFC:'Not Available'} 
+
+                                <span class='fw-bolder'> Radio:</span> ${phone.others.Radio ? phone.others.Radio:'Not Available'} 
+
+                                <span class='fw-bolder'> USB:</span> ${phone.others.USB ? phone.others.USB:'Not Available'} 
+
+                                <span class='fw-bolder'> WLAN:</span> ${phone.others.WLAN ? phone.others.WLAN:'Not Available'} 
                             </div>
                         </div>
                     </div>
                 </div>
-            `
-        // const sensors = () => {
-
-    // }
-
+        `
     singlePhoneContainer.appendChild(div)
+
+    //remove spinner
     spinner('none')
 }
-
-/* <a  href=" ${phone.strVideo ? phone.strVideo:console.log('object')} "class=" btn btn-primary">See Video</a> */
