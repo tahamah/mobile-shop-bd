@@ -1,0 +1,19 @@
+#not-found {
+    display: none;
+}
+
+#loading-spinner {
+    display: none;
+}
+
+#main {
+    display: none;
+}
+
+#single-phone {
+    display: none;
+}
+
+.main-title {
+    font-size: 50px;
+}
