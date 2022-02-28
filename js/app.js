@@ -60,10 +60,17 @@ const displayData = phones => {
             const div = document.createElement('div')
             div.className = 'col'
             div.innerHTML = `
-                <div class="card h-100">
-                    <img src="${phone.image}" class="card-img-top" alt="...">
-                    <div class="card-body">
+                <div class="card h-100 text-center">
+                <div>
+                    <img height='400px'  src="${phone.image}" class="card-img-top w-75 py-4" alt="...">
+                </div>
                     
+                <div class="card-body p-3">
+                    <h5 class="card-title">${phone.phone_name}</h5>
+                    <p class="card-text">${phone.brand}</p>
+                 </div>
+                 <div onclick="lodeSingleDrink(${phone.idDrink})" class="card-footer bg-primary">
+                     <h6 style="cursor:pointer" class="text-white text-center ">See Details</h6>
                     </div>
                 </div>
             `
@@ -75,11 +82,8 @@ const displayData = phones => {
 }
 
 /*  
-                     <h5 class="card-title">${phone.strDrink}</h5>
-                     <p class="card-text">${phone.strInstructions.slice(0,250)}</p>
-                 </div>
-                 <div onclick="lodeSingleDrink(${phone.idDrink})" class="card-footer bg-primary">
-                     <h6 style="cursor:pointer" class="text-white text-center ">See Details</h6>
+                     
+                     
                   */
 
 /*
