@@ -129,12 +129,25 @@ const displaySinglePhone = phone => {
                                 <span class='fw-bolder'> Storage:</span> ${phone.mainFeatures.storage}
                             </p>
                             <p class="">
-                                <span class='fw-bolder'> Sensors:</span> ${phone.mainFeatures.sensors[0]}
+                                <span class='fw-bolder'> Sensors:</span> ${phone.mainFeatures.sensors}
                             </p>
+                            <div class="">
+                                <span class='fw-bolder'> Others:</span> </br>
+                                <span class='fw-bolder'> Bluetooth:</span> ${phone.others.Bluetooth} 
+                                <span class='fw-bolder'> GPS:</span> ${phone.others.GPS} 
+                                <span class='fw-bolder'> NFC:</span> ${phone.others.NFC} 
+                                <span class='fw-bolder'> Radio:</span> ${phone.others.Radio} 
+                                <span class='fw-bolder'> USB:</span> ${phone.others.USB} 
+                                <span class='fw-bolder'> WLAN:</span> ${phone.others.WLAN} 
+                            </div>
                         </div>
                     </div>
                 </div>
             `
+        // const sensors = () => {
+
+    // }
+
     singlePhoneContainer.appendChild(div)
     spinner('none')
 }
