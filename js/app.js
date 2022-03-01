@@ -140,24 +140,34 @@ const displaySinglePhone = phone => {
                                 <span class='fw-bolder'> Sensors:</span> ${phone.mainFeatures.sensors}
                             </p>
                             <div>
-                                <span class='fw-bolder'> Others:</span> </br>
-                                <span class='fw-bolder'> Bluetooth:</span> ${phone.others.Bluetooth ? phone.others.Bluetooth:'Not Available'}
-                                 
-                                <span class='fw-bolder'> GPS:</span> ${phone.others.GPS ? phone.others.GPS:'Not Available'} 
-
-                                <span class='fw-bolder'> NFC:</span> ${phone.others.NFC ? phone.others.NFC:'Not Available'} 
-
-                                <span class='fw-bolder'> Radio:</span> ${phone.others.Radio ? phone.others.Radio:'Not Available'} 
-
-                                <span class='fw-bolder'> USB:</span> ${phone.others.USB ? phone.others.USB:'Not Available'} 
-
-                                <span class='fw-bolder'> WLAN:</span> ${phone.others.WLAN ? phone.others.WLAN:'Not Available'} 
+                                <div id='undefined-others' > 
+                                    <span class='fw-bolder'> Others:</span> <p> Data Not Avilable </p> 
+                                </div>
+                
+                                <div id='defined-others' > 
+                                    <span class='fw-bolder'> Others:</span> </br>
+                                    <span class='fw-bolder'> Bluetooth:</span> ${phone.others?.Bluetooth}
+                                    <span class='fw-bolder'> GPS:</span> ${phone.others?.GPS} 
+                                    <span class='fw-bolder'> NFC:</span> ${phone.others?.NFC}
+                                    <span class='fw-bolder'> Radio:</span> ${phone.others?.Radio}
+                                    <span class='fw-bolder'> USB:</span> ${phone.others?.USB}
+                                    <span class='fw-bolder'> WLAN:</span> ${phone.others?.WLAN}   
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
         `
     singlePhoneContainer.appendChild(div)
+
+    if (phone.others === undefined) {
+        console.log('object');
+        document.getElementById('undefined-others').style.display = 'block'
+        document.getElementById('defined-others').style.display = 'none'
+    } else if (phone.others !== undefined) {
+        document.getElementById('undefined-others').style.display = 'none'
+        document.getElementById('defined-others').style.display = 'block'
+    }
 
     //remove spinner
     spinner('none')
