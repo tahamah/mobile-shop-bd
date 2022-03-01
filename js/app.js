@@ -122,7 +122,7 @@ const displaySinglePhone = phone => {
                                  <span class='fw-bolder'> Name:</span>  ${phone.name}
                             </h5>
                             <h6 class="card-text">
-                                <span class='fw-bolder'> ReleaseDate:</span> ${phone.releaseDate ? phone.releaseDate:'Not Found'}
+                                <span class='fw-bolder'> ReleaseDate:</span> ${phone.releaseDate ? phone.releaseDate:'No Release Date Found'}
                             </h6>
                             <p>
                                 <span class='fw-bolder'> ChipSet: </span> ${phone.mainFeatures.chipSet}
@@ -160,6 +160,7 @@ const displaySinglePhone = phone => {
         `
     singlePhoneContainer.appendChild(div)
 
+    //error handling others Property
     if (phone.others === undefined) {
         console.log('object');
         document.getElementById('undefined-others').style.display = 'block'
