@@ -110,7 +110,6 @@ const displaySinglePhone = phone => {
     //display Single Phone
     const singlePhoneContainer = document.getElementById('single-phone')
     const div = document.createElement('div')
-    console.log(phone);
     div.innerHTML = `
                 <div class="row g-0">
                     <div class="col-md-4 my-auto">
@@ -162,7 +161,6 @@ const displaySinglePhone = phone => {
 
     //error handling others Property
     if (phone.others === undefined) {
-        console.log('object');
         document.getElementById('undefined-others').style.display = 'block'
         document.getElementById('defined-others').style.display = 'none'
     } else if (phone.others !== undefined) {
