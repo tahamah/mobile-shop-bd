@@ -64,15 +64,15 @@ const displayData = phones => {
             div.innerHTML = `
                 <div class="card h-100 text-center">
                 <div>
-                    <img height='400px'  src="${phone.image}" class="card-img-top w-75 py-4" alt="...">
+                    <img id="img"  src="${phone.image}" class="card-img-top w-75 py-4" alt="...">
                 </div>
                     
                 <div class="card-body p-3">
                     <h3 class="card-title">${phone.phone_name}</h3>
                     <p class="card-text">${phone.brand}</p>
                  </div>
-                 <div onclick="lodeSinglePhone('${phone.slug}')" class="card-footer bg-primary">
-                     <h5 style="cursor:pointer" class="text-white  text-center ">See Details</h5>
+                 <div onclick="lodeSinglePhone('${phone.slug}')" class="card-footer bg-primary">    
+                     <a href="#header" style="cursor:pointer" class="text-white text-decoration-none fw-bolder text-center ">See Details</a>
                     </div>
                 </div>
             `
@@ -140,7 +140,7 @@ const displaySinglePhone = phone => {
                             </p>
                             <div>
                                 <div id='undefined-others' > 
-                                    <span class='fw-bolder'> Others:</span> <p> Data Not Avilable </p> 
+                                    <span class='fw-bolder'> Others:</span> <p> N/A </p> 
                                 </div>
                 
                                 <div id='defined-others' > 
